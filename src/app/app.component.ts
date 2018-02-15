@@ -15,6 +15,7 @@ import { HeroService } from './hero.service';
       </li>
     </ul>
     <hero-detail [hero]="selectedHero"></hero-detail>
+    <app-messages></app-messages>
     `,
   //templateUrl: './app.component.html',
   //styleUrls: ['./app.component.css']
@@ -88,6 +89,11 @@ export class AppComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    // Previous code using Promise
+    // this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+
+    // New code using Observable
+    this.heroService.getHeroesObservable().subscribe(heroes => this.heroes = heroes);
+
   }
 }
